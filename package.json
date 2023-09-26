@@ -23,6 +23,7 @@
     "@ng-icons/material-icons": "^25.3.1",
     "@nx/angular": "16.9.0",
     "@spartan-ng/ui-core": "^0.0.1-alpha.305",
+    "@spartan-ng/ui-radiogroup-brain": "0.0.1-alpha.305",
     "@spartan-ng/ui-separator-brain": "0.0.1-alpha.305",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",

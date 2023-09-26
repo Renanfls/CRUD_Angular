@@ -29,6 +29,9 @@
       ],
       "@spartan-ng/ui-input-helm": [
         "src/libs/ui/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-radiogroup-helm": [
+        "src/libs/ui/ui-radiogroup-helm/src/index.ts"
       ]
     }
   },

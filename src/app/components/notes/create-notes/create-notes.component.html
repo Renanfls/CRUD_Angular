@@ -2,28 +2,90 @@
   <header class="py-5 header text-center font-bold">
     <h2>Adicione uma nova anotação:</h2>
   </header>
-  <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-4">
-    <label hlmLabel for="note" class="font-bold">
-      Anotação
-    </label>
+  <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
+    <label hlmLabel for="note" class="font-bold"> Anotação </label>
     <input
       hlmInput
       type="text"
       id="note"
       name="note"
-      placeholder="Digite sua anotação"
-      class="my-1 h-10"
+      placeholder="Digite sua anotação..."
+      class="my-1 h-10 bg-background"
+      [(ngModel)]="note.content"
     />
-    <label hlmLabel for="note" class="font-bold">
-      Anotação
-    </label>
+    <label hlmLabel for="note" class="font-bold"> Assunto </label>
     <input
       hlmInput
       type="text"
       id="note"
       name="note"
-      placeholder="Digite sua anotação"
-      class="my-1 h-10"
+      placeholder="Digite o assunto..."
+      class="my-1 h-10 bg-background"
+      [(ngModel)]="note.subject"
     />
+    <label hlmLabel for="model" class="font-bold my-3 text-center">
+      Selecione o modelo do card:
+    </label>
+    <brn-radio-group
+      class="mb-4 font-medium text-sm font-mono flex flex-wrap gap-10 justify-center"
+      hlm
+    >
+      <div class="radio-model">
+        <label hlmLabel for="model1" class="font-bold">
+          <brn-radio hlm value="model1" id="model1">
+            <hlm-radio-indicator indicator/>
+            Modelo 1
+          </brn-radio>
+        </label>
+        <div class="bg-card p-4 mt-4 rounded-md border-t-8 border-t-teal-300">
+          <p class="subject text-center text-teal-300">
+            <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
+              note.subject
+            }}</b>
+          </p>
+          <p class="content mt-4">{{ note.content }}</p>
+        </div>
+      </div>
+      <div class="radio-model">
+        <label hlmLabel for="model2" class="font-bold">
+          <brn-radio hlm value="model2" id="model2">
+            <hlm-radio-indicator indicator/>
+            Modelo 2
+          </brn-radio>
+        </label>
+        <div
+          class="bg-card p-4 mt-4 max-w-xs rounded-md border-t-8 border-t-amber-300"
+        >
+          <p class="subject text-center text-amber-300">
+            <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
+              note.subject
+            }}</b>
+          </p>
+          <p class="content mt-4">{{ note.content }}</p>
+        </div>
+      </div>
+      <div class="radio-model">
+        <label hlmLabel for="model3" class="font-bold">
+          <brn-radio hlm value="model2" id="model3">
+            <hlm-radio-indicator indicator/>
+            Modelo 3
+          </brn-radio>
+        </label>
+        <div
+          class="bg-card p-4 mt-4 max-w-xs rounded-md border-t-8 border-t-red-300"
+        >
+          <p class="subject text-center text-red-300">
+            <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
+              note.subject
+            }}</b>
+          </p>
+          <p class="content mt-4">{{ note.content }}</p>
+        </div>
+      </div>
+    </brn-radio-group>
+    <div class="flex justify-center align-middle gap-5 mt-4">
+      <button hlmBtn variant="outline" (click)="createNote()">Salvar</button>
+      <button hlmBtn variant="outline" (click)="cancel()">Cancelar</button>
+    </div>
   </form>
 </section>
