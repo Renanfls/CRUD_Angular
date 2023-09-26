@@ -1,6 +1,6 @@
 <section class="container">
-  <header class="py-5 header text-center font-bold">
-    <h2>Adicione uma nova anotação:</h2>
+  <header class="header py-10">
+    <h2 class="text-center font-bold text-2xl">Adicione uma nova anotação:</h2>
   </header>
   <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
     <label hlmLabel for="note" class="font-bold"> Anotação </label>
@@ -29,6 +29,7 @@
     <brn-radio-group
       class="mb-4 font-medium text-sm font-mono flex flex-wrap gap-10 justify-center"
       hlm
+      [value]="note.model"
     >
       <div class="radio-model">
         <label hlmLabel for="model1" class="font-bold">
@@ -39,7 +40,7 @@
         </label>
         <div class="bg-card p-4 mt-4 rounded-md border-t-8 border-t-teal-300">
           <p class="subject text-center text-teal-300">
-            <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
+            <ng-icon name="lucideScrollText" class="mr-2"/><b>{{
               note.subject
             }}</b>
           </p>
@@ -83,9 +84,10 @@
         </div>
       </div>
     </brn-radio-group>
+    
     <div class="flex justify-center align-middle gap-5 mt-4">
       <button hlmBtn variant="outline" (click)="createNote()">Salvar</button>
-      <button hlmBtn variant="outline" (click)="cancel()">Cancelar</button>
+      <button hlmBtn variant="outline" (click)="cancel()" routerLink="/listNote">Cancelar</button>
     </div>
   </form>
 </section>

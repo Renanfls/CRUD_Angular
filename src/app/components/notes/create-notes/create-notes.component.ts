@@ -14,20 +14,22 @@ import {
   HlmRadioGroupDirective,
   HlmRadioIndicatorComponent,
 } from '@spartan-ng/ui-radiogroup-helm';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-create-notes',
   standalone: true,
   imports: [
     HlmLabelDirective,
     HlmInputDirective,
-    BrnRadioComponent,
-    BrnRadioGroupComponent,
+    HlmButtonDirective,
     HlmRadioDirective,
     HlmRadioGroupDirective,
-    HlmRadioIndicatorComponent,
+    BrnRadioComponent,
     NgIconComponent,
-    HlmButtonDirective,
+    BrnRadioGroupComponent,
+    HlmRadioIndicatorComponent,
     FormsModule,
+    RouterModule,
   ],
   viewProviders: [provideIcons({ lucideScrollText })],
   templateUrl: './create-notes.component.html',
