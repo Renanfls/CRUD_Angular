@@ -1,5 +1,6 @@
-import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideScrollText } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -14,7 +15,7 @@ import {
   HlmRadioGroupDirective,
   HlmRadioIndicatorComponent,
 } from '@spartan-ng/ui-radiogroup-helm';
-import { RouterModule } from '@angular/router';
+import { Note } from '../note';
 @Component({
   selector: 'app-create-notes',
   standalone: true,
@@ -35,8 +36,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './create-notes.component.html',
 })
 export class CreateNotesComponent {
-  note = {
-    id: '1',
+  note: Note = {
+    id: 1,
     content: 'Teste',
     subject: 'Dev',
     model: 'model1',

@@ -6,14 +6,14 @@ export const appRoutes: Route[] = [
   {
     path: '',
     redirectTo: 'listNote',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'createNote',
-    component: CreateNotesComponent
+    component: CreateNotesComponent,
   },
   {
     path: 'listNote',
-    component: ListNoteComponent
-  }
+    component: ListNoteComponent,
+  },
 ];

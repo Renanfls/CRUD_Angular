@@ -1,6 +1,26 @@
 <section class="container">
   <header class="header flex flex-col gap-10 mt-10">
     <h2 class="text-center font-bold text-3xl">Meu Mural</h2>
-    <button hlmBtn variant="outline" class="m-auto px-40" routerLink="/createNote">Adicionar anotação</button>
+    <button
+      hlmBtn
+      variant="outline"
+      class="m-auto px-40"
+      routerLink="/createNote"
+    >
+      Adicionar anotação
+    </button>
   </header>
+  <div
+    class="flex flex-wrap justify-center gap-8 mt-10 mb-8"
+    *ngIf="listNotes.length > 0, else noNote"
+  >
+    <div *ngFor="let note of listNotes">
+      <app-note [note]="note"></app-note>
+    </div>
+  </div>
 </section>
+<ng-template #noNote>
+  <div class="text-center pt-8 pb-32">
+    <p>Ainda não há notas cadastradas!</p>
+  </div>
+</ng-template>
