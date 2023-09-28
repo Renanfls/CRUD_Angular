@@ -11,23 +11,17 @@ import { Note } from '../note';
   imports: [NgClass, NgIconComponent, HlmButtonDirective],
   viewProviders: [provideIcons({ lucideScrollText, lucideEdit, lucideTrash2 })],
   templateUrl: './note.component.html',
+  styleUrls: ['./note.component.css'],
 })
 export class NoteComponent {
-  model1 = 'teal-300';
-  model2 = 'amber-300';
-  model3 = 'red-300';
-
   @Input() note: Note = {
     id: 0,
     content: 'Test content',
     subject: 'Test',
-    model: this.model1,
+    model: 'model1',
   };
 
   widthNote(): string {
-    if (this.note.content.length >= 256) {
-      return 'w-96';
-    }
-    return 'w-64';
+    return this.note.content.length >= 256 ? 'w-96' : 'w-64';
   }
 }

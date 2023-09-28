@@ -1,6 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideScrollText } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -16,6 +17,7 @@ import {
   HlmRadioIndicatorComponent,
 } from '@spartan-ng/ui-radiogroup-helm';
 import { Note } from '../note';
+import { NoteService } from '../note.service';
 @Component({
   selector: 'app-create-notes',
   standalone: true,
@@ -31,22 +33,30 @@ import { Note } from '../note';
     HlmRadioIndicatorComponent,
     FormsModule,
     RouterModule,
+    HttpClientModule,
   ],
+  providers: [NoteService],
   viewProviders: [provideIcons({ lucideScrollText })],
   templateUrl: './create-notes.component.html',
 })
 export class CreateNotesComponent {
   note: Note = {
-    id: 1,
-    content: 'Teste',
-    subject: 'Dev',
+    content: '',
+    subject: '',
     model: 'model1',
   };
+
+  constructor(
+    private service: NoteService,
+    private router: Router
+  ) {}
   createNote() {
-    alert('Nota criada!');
+    this.service.create(this.note).subscribe(() => {
+      this.router.navigate(['/listNote']);
+    });
   }
 
   cancel() {
-    alert('Ação cancelada!');
+    this.router.navigate(['/listNote']);
   }
 }

@@ -14,4 +14,8 @@ export class NoteService {
   list(): Observable<Note[]> {
     return this.http.get<Note[]>(this.API);
   }
+
+  create(note: Note): Observable<Note> {
+    return this.http.post<Note>(this.API, note);
+  }
 }

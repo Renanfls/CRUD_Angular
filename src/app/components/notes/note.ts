@@ -1,5 +1,5 @@
 export interface Note {
-  id: number
+  id?: number
   content: string
   subject: string
   model: string
