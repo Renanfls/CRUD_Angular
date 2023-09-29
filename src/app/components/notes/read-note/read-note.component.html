@@ -1,6 +1,6 @@
 <section class="container">
   <header class="header flex flex-col gap-10 mt-10">
-    <h2 class="text-center font-bold text-3xl">Meu Mural</h2>
+    <h2 class="text-center font-bold text-3xl">Mural de Notas</h2>
     <button
       hlmBtn
       variant="outline"
@@ -11,7 +11,7 @@
     </button>
   </header>
   <div
-    class="flex flex-wrap justify-center gap-8 mt-10 mb-8"
+    class="flex flex-wrap justify-center gap-8 mt-10 mb-8 break-words"
     *ngIf="listNotes.length > 0, else noNote"
   >
     <div *ngFor="let note of listNotes">

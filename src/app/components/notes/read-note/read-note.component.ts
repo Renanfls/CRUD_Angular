@@ -8,7 +8,7 @@ import { NoteService } from '../note.service';
 import { NoteComponent } from '../note/note.component';
 
 @Component({
-  selector: 'app-list-note',
+  selector: 'app-read-note',
   standalone: true,
   imports: [
     NgIf,
@@ -19,19 +19,18 @@ import { NoteComponent } from '../note/note.component';
     HttpClientModule,
   ],
   providers: [NoteService],
-  templateUrl: './list-note.component.html',
+  templateUrl: './read-note.component.html',
 })
-export class ListNoteComponent implements OnInit {
+export class ReadNoteComponent implements OnInit {
   public listNotes: Note[] = [];
 
   constructor(private service: NoteService) {}
-
   ngOnInit(): void {
     this.getNotes();
   }
 
   getNotes(): void {
-    this.service.list().subscribe((listNotes: Note[]) => {
+    this.service.read().subscribe((listNotes: Note[]) => {
       this.listNotes = listNotes;
     });
   }

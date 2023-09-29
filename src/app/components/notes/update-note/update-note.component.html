@@ -1,25 +1,25 @@
 <section class="container">
   <header class="header py-10">
-    <h2 class="text-center font-bold text-2xl">Adicione uma nova anotação:</h2>
+    <h2 class="text-center font-bold text-2xl">Modifique sua anotação:</h2>
   </header>
   <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
-    <label hlmLabel for="noteSubject" class="font-bold"> Assunto </label>
+    <label hlmLabel for="note" class="font-bold"> Assunto </label>
     <input
-      required= "true"
+      required
       hlmInput
       type="text"
-      id="noteSubject"
+      id="note"
       name="note.subject"
       placeholder="Digite o assunto..."
       class="my-1 h-10 bg-background"
       [(ngModel)]="note.subject"
     />
-    <label hlmLabel for="noteContent" class="font-bold"> Conteudo </label>
+    <label hlmLabel for="note" class="font-bold"> Conteudo </label>
     <input
-      required= "true"
+      required
       hlmInput
       type="text"
-      id="noteContent"
+      id="note"
       name="note.content"
       placeholder="Digite o conteudo..."
       class="my-1 h-10 bg-background"
@@ -89,7 +89,7 @@
     </brn-radio-group>
     
     <div class="flex justify-center align-middle gap-5 mt-4">
-      <button hlmBtn variant="outline" (click)="createNote()" type="submit">Salvar</button>
+      <button hlmBtn variant="outline" (click)="updateNote()" type="submit">Salvar</button>
       <button hlmBtn variant="outline" (click)="cancel()">Cancelar</button>
     </div>
   </form>

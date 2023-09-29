@@ -17,6 +17,24 @@ import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
     CommonModule,
   ],
   viewProviders: [provideIcons({ lucideGithub })],
-  templateUrl: './header.component.html',
+  template: `
+    <header class="px-6 py-3 flex items-center justify-between border-b">
+      <a href="http://localhost:4200"
+        ><h1 class="text-xl font-bold">crud.angular</h1></a
+      >
+
+      <div class="flex items-center gap-3">
+        <span class="text-sm text-muted-foreground"> Repositorio </span>
+
+        <brn-separator hlmSeparator orientation="vertical" class="h-6" />
+        <a target="_blank" href="https://github.com/Renanfls/CRUD_Angular">
+          <button hlmBtn variant="outline">
+            <ng-icon name="lucideGithub" class="w-4 h-4 mr-2" />
+            GitHub
+          </button>
+        </a>
+      </div>
+    </header>
+  `,
 })
 export class HeaderComponent {}

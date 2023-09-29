@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Note } from './note';
 import { Observable } from 'rxjs';
+import { Note } from './note';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +11,26 @@ export class NoteService {
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<Note[]> {
+  read(): Observable<Note[]> {
     return this.http.get<Note[]>(this.API);
   }
 
   create(note: Note): Observable<Note> {
     return this.http.post<Note>(this.API, note);
+  }
+
+  update(note: Note): Observable<Note> {
+    const url = `${this.API}/${note.id}`;
+    return this.http.put<Note>(url, note);
+  }
+
+  delete(id: number): Observable<Note> {
+    const url = `${this.API}/${id}`;
+    return this.http.delete<Note>(url);
+  }
+
+  searchById(id: number): Observable<Note> {
+    const url = `${this.API}/${id}`;
+    return this.http.get<Note>(url);
   }
 }

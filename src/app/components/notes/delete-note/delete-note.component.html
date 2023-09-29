@@ -1,3 +1,10 @@
-<p>
-  delete-note works!
-</p>
+<section class="container">
+  <div class="modal bg-card shadow-md shadow-slate-900 rounded-md border-t-8 border-t-violet-900">
+    <p>A anotação será deletada. <br> Confirma a exclusão?</p>
+    <div class="flex justify-center align-middle mt-10 gap-3">
+      <button hlmBtn variant="outline" class="botao botao-excluir" (click)="deleteNote()">Confirmar</button>
+      <button hlmBtn variant="outline" class="botao botao-cancelar" (click)="cancel()">Cancelar</button>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
