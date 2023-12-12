@@ -2,17 +2,17 @@
   <header class="header py-10">
     <h2 class="text-center font-bold text-2xl">Adicione uma nova anotação:</h2>
   </header>
-  <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
+  <form [formGroup]="form" class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
     <label hlmLabel for="noteSubject" class="font-bold"> Assunto </label>
     <input
       required= "true"
       hlmInput
       type="text"
       id="noteSubject"
-      name="note.subject"
+      formControlName="subject"
       placeholder="Digite o assunto..."
       class="my-1 h-10 bg-background"
-      [(ngModel)]="note.subject"
+      
     />
     <label hlmLabel for="noteContent" class="font-bold"> Conteudo </label>
     <input
@@ -20,10 +20,10 @@
       hlmInput
       type="text"
       id="noteContent"
-      name="note.content"
+      formControlName="content"
       placeholder="Digite o conteudo..."
       class="my-1 h-10 bg-background"
-      [(ngModel)]="note.content"
+      
     />
     <label hlmLabel for="model" class="font-bold my-3 text-center">
       Selecione o modelo do card:
@@ -31,8 +31,8 @@
     <brn-radio-group
       class="mb-4 font-medium text-sm font-mono flex flex-wrap gap-10 justify-center"
       hlm
-      [ngModelOptions]="{ standalone: true }"
-      [(ngModel)]="note.model"
+      
+      
     >
       <div class="radio-model">
         <label hlmLabel for="model1" class="font-bold">
@@ -44,10 +44,10 @@
         <div class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-teal-300">
           <p class="subject text-center text-teal-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2"/><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
       <div class="radio-model">
@@ -62,10 +62,10 @@
         >
           <p class="subject text-center text-amber-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
       <div class="radio-model">
@@ -80,10 +80,10 @@
         >
           <p class="subject text-center text-red-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
     </brn-radio-group>
