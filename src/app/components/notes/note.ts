@@ -3,4 +3,5 @@ export interface Note {
   content: string
   subject: string
   model: string
+  favorite: boolean
 }

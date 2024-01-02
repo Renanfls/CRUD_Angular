@@ -20,6 +20,7 @@ export class NoteComponent {
     content: '',
     subject: '',
     model: '',
+    favorite: false,
   };
 
   widthNote(): string {

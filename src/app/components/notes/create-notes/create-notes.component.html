@@ -12,8 +12,9 @@
       formControlName="subject"
       placeholder="Digite o assunto..."
       class="my-1 h-10 bg-background"
-      
     />
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('subject')?.errors?.['required'] && form.get('subject')?.touched">Assunto é obrigatório!</span>
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('subject')?.errors?.['minlength'] && form.get('subject')?.touched">Assunto precisa ter no mínimo 3 caracteres!</span>
     <label hlmLabel for="noteContent" class="font-bold"> Conteudo </label>
     <input
       required= "true"
@@ -23,23 +24,24 @@
       formControlName="content"
       placeholder="Digite o conteudo..."
       class="my-1 h-10 bg-background"
-      
     />
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('content')?.errors?.['required'] && form.get('content')?.touched">Conteudo é obrigatório!</span>
     <label hlmLabel for="model" class="font-bold my-3 text-center">
       Selecione o modelo do card:
     </label>
     <brn-radio-group
       class="mb-4 font-medium text-sm font-mono flex flex-wrap gap-10 justify-center"
-      hlm
-      
-      
     >
       <div class="radio-model">
-        <label hlmLabel for="model1" class="font-bold">
-          <brn-radio hlm value="model1" id="model1">
-            <hlm-radio-indicator indicator/>
-            Modelo 1
-          </brn-radio>
+        <label hlmLabel for="model1" class="font-bold flex">
+          <input
+            type="radio"
+            id="model1"
+            value="model1"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 1</span>
         </label>
         <div class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-teal-300">
           <p class="subject text-center text-teal-300 break-words">
@@ -51,11 +53,15 @@
         </div>
       </div>
       <div class="radio-model">
-        <label hlmLabel for="model2" class="font-bold">
-          <brn-radio hlm value="model2" id="model2">
-            <hlm-radio-indicator indicator/>
-            Modelo 2
-          </brn-radio>
+        <label hlmLabel for="model2" class="font-bold flex">
+          <input
+            type="radio"
+            id="model2"
+            value="model2"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 2</span>
         </label>
         <div
           class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-amber-300"
@@ -69,11 +75,15 @@
         </div>
       </div>
       <div class="radio-model">
-        <label hlmLabel for="model3" class="font-bold">
-          <brn-radio hlm value="model3" id="model3">
-            <hlm-radio-indicator indicator/>
-            Modelo 3
-          </brn-radio>
+        <label hlmLabel for="model3" class="font-bold flex">
+          <input
+            type="radio"
+            id="model3"
+            value="model3"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 3</span>
         </label>
         <div
           class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-red-300"
@@ -89,7 +99,7 @@
     </brn-radio-group>
     
     <div class="flex justify-center align-middle gap-5 mt-4">
-      <button hlmBtn variant="outline" (click)="createNote()" type="submit">Salvar</button>
+      <button hlmBtn variant="outline" [disabled]="!form.valid" (click)="createNote()" type="submit">Salvar</button>
       <button hlmBtn variant="outline" (click)="cancel()">Cancelar</button>
     </div>
   </form>

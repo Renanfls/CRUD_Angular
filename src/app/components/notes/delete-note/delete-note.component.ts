@@ -18,6 +18,7 @@ export class DeleteNoteComponent implements OnInit {
     content: '',
     subject: '',
     model: '',
+    favorite: false,
   };
 
   constructor(

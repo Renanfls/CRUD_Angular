@@ -1,6 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideScrollText } from '@ng-icons/lucide';
@@ -16,12 +22,12 @@ import {
   HlmRadioGroupDirective,
   HlmRadioIndicatorComponent,
 } from '@spartan-ng/ui-radiogroup-helm';
-import { Note } from '../note';
 import { NoteService } from '../note.service';
 @Component({
   selector: 'app-create-notes',
   standalone: true,
   imports: [
+    CommonModule,
     HlmLabelDirective,
     HlmInputDirective,
     HlmButtonDirective,
@@ -31,20 +37,17 @@ import { NoteService } from '../note.service';
     NgIconComponent,
     BrnRadioGroupComponent,
     HlmRadioIndicatorComponent,
-    FormsModule,
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [NoteService],
   viewProviders: [provideIcons({ lucideScrollText })],
   templateUrl: './create-notes.component.html',
 })
-
-
 export class CreateNotesComponent implements OnInit {
-
   form!: FormGroup;
-  
+
   constructor(
     private service: NoteService,
     private router: Router,
@@ -52,17 +55,33 @@ export class CreateNotesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({ 
-      content: ['Formulário reativo'],
-      subject: ['Teste'],
+    this.form = this.formBuilder.group({
+      content: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/),
+        ]),
+      ],
+      subject: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern(/(.|\s)*\S(.|\s)*/),
+        ]),
+      ],
       model: ['model1'],
-    })
+      favorite: [false],
+    });
   }
 
   createNote() {
-    this.service.create(this.form.value).subscribe(() => {
-      this.router.navigate(['/readNote']);
-    });
+    if (this.form.valid) {
+      this.service.create(this.form.value).subscribe(() => {
+        this.router.navigate(['/readNote']);
+      });
+    }
   }
 
   cancel() {

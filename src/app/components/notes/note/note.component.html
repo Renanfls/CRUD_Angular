@@ -7,10 +7,10 @@
   </p>
   <p class="content mt-4">{{ note.content }}</p>
   <div class="flex justify-center gap-2">
-    <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" routerLink="/notes/updateNote/{{note.id}}">
+    <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" title="Editar nota {{ note.content }}" routerLink="/notes/updateNote/{{note.id}}">
       <ng-icon name="lucideEdit" />
     </button>
-    <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" routerLink="/notes/deleteNote/{{note.id}}">
+    <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" title="Excluir nota {{ note.content }}" routerLink="/notes/deleteNote/{{note.id}}">
       <ng-icon name="lucideTrash2" />
     </button>
   </div>

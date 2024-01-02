@@ -24,7 +24,7 @@ import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
       >
 
       <div class="flex items-center gap-3">
-        <span class="text-sm text-muted-foreground"> Repositorio </span>
+        <span class="text-sm text-muted-foreground select-none"> Repositorio </span>
 
         <brn-separator hlmSeparator orientation="vertical" class="h-6" />
         <a target="_blank" href="https://github.com/Renanfls/CRUD_Angular">

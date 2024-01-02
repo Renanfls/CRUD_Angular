@@ -2,94 +2,104 @@
   <header class="header py-10">
     <h2 class="text-center font-bold text-2xl">Modifique sua anotação:</h2>
   </header>
-  <form class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
+  <form [formGroup]="form" class="p-5 flex flex-col bg-primary/10 rounded-xl gap-3">
     <label hlmLabel for="note" class="font-bold"> Assunto </label>
     <input
       required
       hlmInput
       type="text"
       id="note"
-      name="note.subject"
+      formControlName="subject"
       placeholder="Digite o assunto..."
       class="my-1 h-10 bg-background"
-      [(ngModel)]="note.subject"
     />
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('subject')?.errors?.['required'] && form.get('subject')?.touched">Assunto é obrigatório!</span>
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('subject')?.errors?.['minlength'] && form.get('subject')?.touched">Assunto precisa ter no mínimo 3 caracteres!</span>
     <label hlmLabel for="note" class="font-bold"> Conteudo </label>
     <input
       required
       hlmInput
       type="text"
       id="note"
-      name="note.content"
+      formControlName="content"
       placeholder="Digite o conteudo..."
       class="my-1 h-10 bg-background"
-      [(ngModel)]="note.content"
     />
+    <span class="text-amber-200 mb-4 text-sm" *ngIf="form.get('content')?.errors?.['required'] && form.get('content')?.touched">Conteudo é obrigatório!</span>
     <label hlmLabel for="model" class="font-bold my-3 text-center">
       Selecione o modelo do card:
     </label>
     <brn-radio-group
       class="mb-4 font-medium text-sm font-mono flex flex-wrap gap-10 justify-center"
-      hlm
-      [ngModelOptions]="{ standalone: true }"
-      [(ngModel)]="note.model"
     >
       <div class="radio-model">
-        <label hlmLabel for="model1" class="font-bold">
-          <brn-radio hlm value="model1" id="model1">
-            <hlm-radio-indicator indicator/>
-            Modelo 1
-          </brn-radio>
+        <label hlmLabel for="model1" class="font-bold flex">
+          <input
+            type="radio"
+            id="model1"
+            value="model1"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 1</span>
         </label>
         <div class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-teal-300">
           <p class="subject text-center text-teal-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2"/><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
       <div class="radio-model">
-        <label hlmLabel for="model2" class="font-bold">
-          <brn-radio hlm value="model2" id="model2">
-            <hlm-radio-indicator indicator/>
-            Modelo 2
-          </brn-radio>
+        <label hlmLabel for="model2" class="font-bold flex">
+          <input
+            type="radio"
+            id="model2"
+            value="model2"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 2</span>
         </label>
         <div
           class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-amber-300"
         >
           <p class="subject text-center text-amber-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
       <div class="radio-model">
-        <label hlmLabel for="model3" class="font-bold">
-          <brn-radio hlm value="model3" id="model3">
-            <hlm-radio-indicator indicator/>
-            Modelo 3
-          </brn-radio>
+        <label hlmLabel for="model3" class="font-bold flex">
+          <input
+            type="radio"
+            id="model3"
+            value="model3"
+            formControlName="model"
+            class="mr-2"
+          >
+          <span>Modelo 3</span>
         </label>
         <div
           class="bg-card p-4 mt-4 max-w-sm rounded-md border-t-8 border-t-red-300"
         >
           <p class="subject text-center text-red-300 break-words">
             <ng-icon name="lucideScrollText" class="mr-2" /><b>{{
-              note.subject
+              form.get('subject')?.value
             }}</b>
           </p>
-          <p class="content mt-4 break-words">{{ note.content }}</p>
+          <p class="content mt-4 break-words">{{ form.get('content')?.value }}</p>
         </div>
       </div>
     </brn-radio-group>
     
     <div class="flex justify-center align-middle gap-5 mt-4">
-      <button hlmBtn variant="outline" (click)="updateNote()" type="submit">Salvar</button>
+      <button hlmBtn variant="outline" [disabled]="!form.valid" (click)="updateNote()" type="submit">Salvar</button>
       <button hlmBtn variant="outline" (click)="cancel()">Cancelar</button>
     </div>
   </form>
