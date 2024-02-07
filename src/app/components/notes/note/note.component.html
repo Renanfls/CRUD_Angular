@@ -7,6 +7,9 @@
   </p>
   <p class="content mt-4">{{ note.content }}</p>
   <div class="flex justify-center gap-2">
+    <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" title="Editar nota {{ note.content }}">
+      <ng-icon name="{{changeFavoriteIcon()}}" />
+    </button>
     <button hlmBtn variant="outline" class="border-none cursor-pointer mt-2.5" title="Editar nota {{ note.content }}" routerLink="/notes/updateNote/{{note.id}}">
       <ng-icon name="lucideEdit" />
     </button>

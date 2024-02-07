@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~16.2.0",
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
+    "@ng-icons/bootstrap-icons": "^26.3.0",
     "@ng-icons/core": "^25.3.1",
     "@ng-icons/lucide": "^25.3.1",
     "@ng-icons/material-icons": "^25.3.1",

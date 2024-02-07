@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideEdit, lucideScrollText, lucideTrash2 } from '@ng-icons/lucide';
+import { bootstrapHeart, bootstrapHeartFill } from '@ng-icons/bootstrap-icons';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { Note } from '../note';
 
@@ -10,7 +11,7 @@ import { Note } from '../note';
   selector: 'app-note',
   standalone: true,
   imports: [NgClass, NgIconComponent, HlmButtonDirective, RouterModule],
-  viewProviders: [provideIcons({ lucideScrollText, lucideEdit, lucideTrash2 })],
+  viewProviders: [provideIcons({ lucideScrollText, lucideEdit, lucideTrash2, bootstrapHeart, bootstrapHeartFill })],
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css'],
 })
@@ -25,5 +26,9 @@ export class NoteComponent {
 
   widthNote(): string {
     return this.note.content.length >= 256 ? 'w-96' : 'w-64';
+  }
+
+  changeFavoriteIcon(): string {
+    return this.note.favorite == false ? 'bootstrapHeart' : 'bootstrapHeartFill';
   }
 }
