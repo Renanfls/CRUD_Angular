@@ -1,11 +1,18 @@
 {
   "notes": [
     {
-      "content": "afsadsfsdf",
-      "subject": "sfasdf",
+      "content": "dsfsafsfdsfa",
+      "subject": "sfsfdsadffsfsdfsdfsdfdsfdsfsadfdfadfdfasfdasfasfsdfdsfafdfsdfsdfsdfsfsdfsdfasfsadfsfsfdfsdfadfasdfsdfasdfasfdfadfdsfsadfdsfsdfsdfsdfdff",
       "model": "model1",
-      "favorite": false,
+      "favorite": true,
       "id": 1
+    },
+    {
+      "content": "sdfsdfdsf",
+      "subject": "ddfgdfgfdfg",
+      "model": "model3",
+      "favorite": false,
+      "id": 3
     }
   ]
 }

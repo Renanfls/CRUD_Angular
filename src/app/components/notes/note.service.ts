@@ -11,7 +11,7 @@ export class NoteService {
 
   constructor(private http: HttpClient) {}
 
-  read(page: number, filter: string): Observable<Note[]> {
+  read(page: number, filter: string, favorites: boolean): Observable<Note[]> {
     const itemsByPage = 8;
 
     let params = new HttpParams()
@@ -20,6 +20,10 @@ export class NoteService {
 
     if(filter.trim().length > 2) {
       params = params.set("q", filter)
+    }
+
+    if(favorites) {
+      params = params.set("favorite", true);
     }
 
     return this.http.get<Note[]>(this.API, { params });
@@ -32,6 +36,11 @@ export class NoteService {
   update(note: Note): Observable<Note> {
     const url = `${this.API}/${note.id}`;
     return this.http.put<Note>(url, note);
+  }
+
+  changeFavorite(note: Note): Observable<Note> {
+    note.favorite = !note.favorite;
+    return this.update(note);
   }
 
   delete(id: number): Observable<Note> {

@@ -2,37 +2,58 @@
   <header class="header flex flex-col gap-10 mt-10">
     <div class="flex items-center self-center w-4/12">
       <ng-icon name="lucideSearch" class="absolute ps-3.5" />
-      <input 
+      <input
         hlmInput
-        autofocus 
-        type="search" 
-        id="search" 
-        placeholder="Procurar notas..." 
+        autofocus
+        type="search"
+        id="search"
+        placeholder="Procurar notas..."
         class="my-1 h-10 bg-background w-full ps-10"
         [(ngModel)]="filter"
         (keyup)="searchNotes()"
       />
     </div>
-    <h2 class="text-center font-bold text-3xl">Mural de Notas</h2>
-    <button
-      hlmBtn
-      variant="outline"
-      class="m-auto w-3/12"
-      routerLink="/createNote"
-    >
-      Adicionar anotação
-    </button>
+    <h2 class="text-center font-bold text-3xl">{{ title }}</h2>
+    <div class="flex flex-row justify-center gap-3">
+      <button
+        hlmBtn
+        variant="outline"
+        class="w-2/12"
+        (click)="reloadComponent()"
+      >
+        Anotações
+      </button>
+      <button
+        hlmBtn
+        variant="outline"
+        class="w-2/12"
+        (click)="readFavorites()"
+      >
+        Favoritos
+      </button>
+      <button
+        hlmBtn
+        variant="outline"
+        class="w-2/12"
+        routerLink="/createNote"
+      >
+        Adicionar anotação
+      </button>
+    </div>
   </header>
   <div
     class="flex flex-wrap justify-center gap-8 mt-10 mb-8 break-words"
-    *ngIf="listNotes.length > 0, else noNote"
+    *ngIf="listNotes.length > 0; else noNote"
   >
     <div *ngFor="let note of listNotes">
-      <app-note [note]="note"></app-note>
+      <app-note 
+        [note]="note"
+        [listFavorites]="listFavorites"
+      ></app-note>
     </div>
   </div>
 </section>
-<app-load-more-button [moreNotes]="moreNotes" (click)="loadMoreNotes()"/>
+<app-load-more-button [moreNotes]="moreNotes" (click)="loadMoreNotes()" />
 <ng-template #noNote>
   <div class="text-center pt-8 pb-32">
     <p>Ainda não há notas cadastradas!</p>

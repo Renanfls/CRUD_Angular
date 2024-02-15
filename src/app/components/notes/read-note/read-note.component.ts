@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -35,15 +35,21 @@ export class ReadNoteComponent implements OnInit {
   currentPage = 1;
   moreNotes = true;
   filter = '';
+  favorites = false;
+  listFavorites: Note[] = [];
+  title = 'Mural de Notas';
 
-  constructor(private service: NoteService) {}
+  constructor(
+    private service: NoteService,
+    private router: Router
+    ) {}
   ngOnInit(): void {
     this.getNotes();
   }
 
   getNotes(): void {
     this.service
-      .read(this.currentPage, this.filter)
+      .read(this.currentPage, this.filter, this.favorites)
       .subscribe((listNotes: Note[]) => {
         this.listNotes = listNotes;
       });
@@ -51,7 +57,7 @@ export class ReadNoteComponent implements OnInit {
 
   loadMoreNotes(): void {
     this.service
-      .read(++this.currentPage, this.filter)
+      .read(++this.currentPage, this.filter, this.favorites)
       .subscribe((listNotes) => {
         this.listNotes.push(...listNotes);
         if (!listNotes.length) {
@@ -63,8 +69,28 @@ export class ReadNoteComponent implements OnInit {
   searchNotes() {
     this.moreNotes = true;
     this.currentPage = 1;
-    this.service.read(this.currentPage, this.filter).subscribe((listNotes) => {
+    this.service.read(this.currentPage, this.filter, this.favorites).subscribe((listNotes) => {
       this.listNotes = listNotes;
+    });
+  }
+
+  reloadComponent() {
+    this.favorites = false;
+    this.currentPage = 1;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url]);
+  }
+
+  readFavorites() {
+    this.title = 'Favoritos';
+    this.favorites = true;
+    this.moreNotes = true;
+    this.currentPage = 1;
+    this.service.read(this.currentPage, this.filter, this.favorites)
+    .subscribe(listNoteFavorites => {
+      this.listNotes = listNoteFavorites;
+      this.listFavorites = listNoteFavorites;
     });
   }
 }
